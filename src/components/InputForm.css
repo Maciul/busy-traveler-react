@@ -1,0 +1,15 @@
+.hide {
+	display: none
+}
+
+.results {
+	text-decoration: none;
+	color: white;
+	text-align: left;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
