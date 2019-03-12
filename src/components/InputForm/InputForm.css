@@ -2,14 +2,20 @@
 	display: none
 }
 
+.ugh {
+	text-decoration: none;
+	color: white;
+}
+
+.ugh a {
+	text-decoration: none;
+	color: white;	
+}
+
 .results {
 	text-decoration: none;
 	color: white;
 	text-align: left;
 }
 
-a {
-	text-decoration: none;
-	color: white;
-}
 
