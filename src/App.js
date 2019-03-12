@@ -19,8 +19,6 @@ class App extends Component {
     
         <header className="App-header">
           { routes }
-          <a href="google.com"> Fkjhdfjksd </a>
-          <button onClick={this.makeRequestForData} > Lets Go! </button>
         </header>
     );
   }
