@@ -10,8 +10,8 @@ class FlickrAPI extends Component {
   }
 
   componentDidMount( props ) {
-    console.log( this.props, props )
-      axios.get( `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=6046bd3b0b0209c90dcfb95e499d4248&tags=${this.props.arrival};architecture&sort=relevance&accuracy=3&format=json&content_type=1&nojsoncallback=1&per_page=10&in_gallery=true&tag_mode=AND` )
+    console.log( "FLICKRS: Did Mount", this.props )
+      axios.get( `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=6046bd3b0b0209c90dcfb95e499d4248&text=${this.props.arrival}&sort=relevance&format=json&content_type=1&nojsoncallback=1&per_page=9` )
         .then( res => {
           let flickrPhotos = res.data.photos.photo.map( photo => {
             return `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`
@@ -19,9 +19,20 @@ class FlickrAPI extends Component {
           this.setState( { photos: flickrPhotos } )
         } )
     }
+  
 
-  componentWillReceiveProps() {
-    console.log( "Flickr API" )
+  shouldComponentUpdate() {
+    console.log( 'FLICKR: ShouldUpdate', this.props );
+    return true
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log( 'FLICKR: getSnapshotBeforeUpdate', prevProps, prevState );
+    return null
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log( "FLICKR: DidUpdate", prevProps, prevState, snapshot );
   }
 
   render() {
@@ -32,7 +43,7 @@ class FlickrAPI extends Component {
     return (
 
       <div className="gallery"> 
-          <h1> Photos of { this.props.countryTo } </h1>
+          <h3> Photos of { this.props.arrival } </h3>
         <div className="grid">
               {displayAmazingPhotos}
         </div>

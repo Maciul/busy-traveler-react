@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import logo from './terrain.png';
 import InputForm from './containers/InputForm/InputForm';
 import Results from './containers/Results/Results'
 import { Route, Switch } from 'react-router-dom';

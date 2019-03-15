@@ -6,30 +6,36 @@ class InputForm extends Component {
 	
 state = {
     countries: null,
-    pickedCountryFrom: null, 
-    pickedCountryTo: null,
+    countryToAlpha3Code: {},
+    pickedCountryFromText: null, 
+    pickedCountryToText: null,
+    pickedCountryFromCode: null, 
+    pickedCountryToCode: null,
     showFromInput: true,
-    showToInput: false
+    showToInput: false,
+
 
   }
 
   countryTo = ( country ) => {
       this.setState( { 
-        pickedCountryTo: country, 
+        pickedCountryToText: country, 
+        pickedCountryToCode: this.state.countryToAlpha3Code[ country ],
         showToInput: false
        } )
   }
 
   countryFrom = ( country ) => {
       this.setState( { 
-        pickedCountryFrom: country, 
+        pickedCountryFromText: country, 
+        pickedCountryFromCode: this.state.countryToAlpha3Code[ country ],
         showFromInput: false,
         showToInput: true
        } )
   }
 
   getResults = () => {
-  	const queryString = `?departingCountry=${this.state.pickedCountryFrom}&arrivalCountry=${this.state.pickedCountryTo}`;
+  	const queryString = `?departingCountry=${this.state.pickedCountryFromText}&arrivalCountry=${this.state.pickedCountryToText}&departureCountryCode=${this.state.pickedCountryFromCode}&arrivalCountryCode=${this.state.pickedCountryToCode}`;
 	this.props.history.push({
 	pathname: '/results',
 	search: queryString
@@ -37,29 +43,41 @@ state = {
   }
 
 	componentDidMount() {
-	    axios.get( 'https://restcountries.eu/rest/v2/all?fields=name' )
+		console.log( "Input Container: Did Mount" );
+	    axios.get( 'https://restcountries.eu/rest/v2/all?fields=name;alpha3Code' )
 	      .then( res => {
-	        let countries = res.data.map( country => {
-	          return country.name
+	        let countries = []
+	        let countryToAlpha3Code = {} 
+	        res.data.forEach( country => {
+	        	countries.push( country.name )
+	        	countryToAlpha3Code[country.name] = country.alpha3Code
 	        })
-	        this.setState( { countries: countries } )
+	        console.log( countries, countryToAlpha3Code );
+	        this.setState( { countries: countries, countryToAlpha3Code: countryToAlpha3Code } )
 	      } )
 	  }
-  	
-  	componentWillReceiveProps() {
-		console.log( 'input forms receiving props', this.props );
+
+	shouldComponentUpdate() {
+		console.log( 'Input Forms: ShouldUpdate', this.props );
+		return true
 	}
 
-	componentWillUnmount() {
-		console.log( 'inputforms are unmounting' );
+	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
+		console.log( 'Input Forms: getSnapshotBeforeUpdate', prevProps, prevState, snapshot );
+		return null;
+		
 	}
 
 	componentDidUpdate() {
-		console.log( "inputforms component update" );
+		console.log( "Input Forms: DidUpdate" );
+	}
+
+	componentWillUnmount() {
+		console.log( "Input Forms: WillUnmount" );
 	}
 
 	render() {
-		console.log( this.props )
+		console.log( this.state )
 		return (
 				<TypeAhead
 		            countries={this.state.countries}
