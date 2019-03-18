@@ -42,12 +42,12 @@ class FlickrAPI extends Component {
 
     return (
 
-      <div className="gallery"> 
-          <h3> Photos of { this.props.arrival } </h3>
+      <section className="gallery"> 
+          <p> Photos </p>
         <div className="grid">
               {displayAmazingPhotos}
         </div>
-      </div>
+      </section>
     )
   }
 }

@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import classes from './WorldBankAPI.css';
+import './WorldBankAPI.css';
 import axios from 'axios';
 import './WorldBankAPI.css';
 
@@ -40,10 +40,6 @@ class WorldBankAPI extends Component {
     console.log( "WorldBank: DidUpdate", prevProps, prevState, snapshot );
   }
 
-  getDerivedStateFromProps( props, state ) {
-  	console.log( "WorldBank: getDerivedStateFromProps", props, state )
-  }
-
   render() {
   	let ppp;
   	if ( this.state.worldBankData ){
@@ -54,13 +50,13 @@ class WorldBankAPI extends Component {
   	}
     return (
 
-      <div> 
-          <h3> Purchasing Power </h3>
+      <section> 
+          <p> Purchasing Power </p>
         <div className="worldBankDiv">
-        	<h1> { this.props.departureCode } </h1>
-        	<h2> {ppp} </h2>	
+        	<p> { this.props.departureCode } </p>
+        	<p> {ppp} </p>	
         </div>
-      </div>
+      </section>
     )
   }
 }

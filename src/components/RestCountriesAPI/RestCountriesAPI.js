@@ -39,7 +39,7 @@ class RestCountriesAPI extends Component {
     let currencies = []; 
     if ( this.state.country.currencies ) {
       currencies = this.state.country.currencies.map( (currency, index ) => {
-        return <li key={index}> <b>Name:</b> {currency.name}
+        return <li key={index}>{currency.name}
                 <ul>
                   <li> Code: {currency.code} </li> 
                   <li> Symbol: {currency.symbol} </li> 
@@ -49,23 +49,25 @@ class RestCountriesAPI extends Component {
     }
     return (
 
-      <div> 
-          <h3> Info about { this.props.arrival } </h3>
-        <div className="gallery">
+      <section> 
+          <p> Info: </p>
+        <div className="holder">
           <div className="country">
             <img src={this.state.country.flag } alt=""/>
-            <h4> Capital: { this.state.country.capital }</h4>
-            <h4> Currencies: </h4>
+          </div> 
+          <div className="info">
+            <p> Capital: { this.state.country.capital }</p>
+            <p> Currencies: </p>
             <ul>
               { currencies }
             </ul>
-            <h4> Native Name: { this.state.country.nativeName }</h4>
-            <h4> Region: { this.state.country.region }</h4>
-            <h4> Sub-Region: { this.state.country.subregion }</h4>
-            <h4> Population: { this.state.country.population && (this.state.country.population).toLocaleString('en') }</h4>
-          </div>
+            <p> Native Name: { this.state.country.nativeName }</p>
+            <p> Region: { this.state.country.region }</p>
+            <p> Sub-Region: { this.state.country.subregion }</p>
+            <p> Population: { this.state.country.population && (this.state.country.population).toLocaleString('en') }</p>
+            </div>
         </div>
-      </div>
+      </section>
     )
   }
 }

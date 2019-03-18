@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import './Results.css';
 import FlickrAPI from '../../components/FlickrAPI/FlickrAPI'
 import RestCountriesAPI from '../../components/RestCountriesAPI/RestCountriesAPI'
 import WorldBankAPI from '../../components/WorldBankAPI/WorldBankAPI'
+
+
 
 class Results extends Component {
 	constructor( props ) {
@@ -21,11 +24,11 @@ class Results extends Component {
 
 
 	shouldComponentUpdate() {
-		return true;
 		console.log( 'Results: ShouldUpdate', this.props );
+		return true;
 	}
 
-	getSnapshotBeforeUpdate() {
+	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
 		console.log( 'Results: getSnapshotBeforeUpdate' );
 	}
 
@@ -36,11 +39,15 @@ class Results extends Component {
 	componentWillUnmount() {
 		console.log( "Results: WillUnmount" );
 	}
+
+	getDerivedStateFromProps( props, state ) {
+  		console.log( "Results: getDerivedStateFromProps", props, state )
+  }
 	
 	render() {
 		console.log( 'results state', this.state, this.state.arrival )
 		return (
-			<div>
+			<div className="resultsMain">
 				<RestCountriesAPI
 					arrival={this.state.arrival}
 				/> 

@@ -1,19 +1,23 @@
+h3 {
+	margin: 0;
+}
+
 .hide {
 	display: none
 }
 
 .wrapper {
 	text-decoration: none;
-	color: white;
+	color: #273E4A;
 }
 
 .wrapper a {
 	text-decoration: none;
-	color: white;	
+	color: #273E4A;	
 }
 
-.typeahead {
-	position: absolute;
+.typeahead ul {
+	position: fixed;
 }
 
 .results {
@@ -22,4 +26,20 @@
 	text-align: left;
 }
 
+.wrapper input {
+  height: 100px;
+  width: 50vw;
+  background-color: #e1e9ee;
+  text-align: center;
+  font-size: 1rem;
+  color: #283e4a;
+  border-color: #273E4A;
+  border-style: solid;
+}
 
+.wrapper input::placeholder { color: #283e4a; font-size: 1.5em; }
+
+.wrapper input:focus::-webkit-input-placeholder { color:transparent; }
+.wrapper input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+.wrapper input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+.wrapper input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */

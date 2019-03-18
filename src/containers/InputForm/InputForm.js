@@ -43,7 +43,7 @@ state = {
   }
 
 	componentDidMount() {
-		console.log( "Input Container: Did Mount" );
+		console.log( "Input Forms: Did Mount" );
 	    axios.get( 'https://restcountries.eu/rest/v2/all?fields=name;alpha3Code' )
 	      .then( res => {
 	        let countries = []
@@ -52,7 +52,6 @@ state = {
 	        	countries.push( country.name )
 	        	countryToAlpha3Code[country.name] = country.alpha3Code
 	        })
-	        console.log( countries, countryToAlpha3Code );
 	        this.setState( { countries: countries, countryToAlpha3Code: countryToAlpha3Code } )
 	      } )
 	  }
@@ -63,7 +62,7 @@ state = {
 	}
 
 	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
-		console.log( 'Input Forms: getSnapshotBeforeUpdate', prevProps, prevState, snapshot );
+		console.log( 'Input Forms: getSnapshotBeforeUpdate', 'prevProps', prevProps, 'prevState', prevState,'snapshot', snapshot );
 		return null;
 		
 	}
@@ -77,7 +76,7 @@ state = {
 	}
 
 	render() {
-		console.log( this.state )
+		console.log( "Input Form Render" );
 		return (
 				<TypeAhead
 		            countries={this.state.countries}
