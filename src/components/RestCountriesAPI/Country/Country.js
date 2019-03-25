@@ -3,36 +3,29 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './RestCountriesAPI.css';
 
-class RestCountriesAPI extends Component {
+class Country extends Component {
 
   state = {
     country: {}
   }
 
   componentDidMount( props ) {
-    let countryData;
-    console.log( "REST: Did Mount", this.props )
-      axios.get( `https://restcountries.eu/rest/v2/alpha?codes=${this.props.arrival};${this.props.departure}` )
-        .then( res => {
-          console.log( "response", res )
-          countryData = res.data[0];
-          this.setState( { country: countryData } )
-          } )
-    }
+    console.log( "Country", props )
+  }
 
 
   shouldComponentUpdate() {
-    console.log( 'REST: ShouldUpdate', this.props );
+    console.log( 'Country: ShouldUpdate', this.props );
     return true
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log( 'REST: getSnapshotBeforeUpdate', prevProps, prevState );
+    console.log( 'Country: getSnapshotBeforeUpdate', prevProps, prevState );
     return null
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log( "REST: DidUpdate", prevProps, prevState, snapshot );
+    console.log( "Country: DidUpdate", prevProps, prevState, snapshot );
   }
 
   render() {
@@ -73,4 +66,4 @@ class RestCountriesAPI extends Component {
   }
 }
 
-export default RestCountriesAPI
+export default Country

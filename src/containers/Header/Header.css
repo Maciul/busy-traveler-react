@@ -7,6 +7,8 @@
     align-items: baseline;
     color: #C7D1D7;
     justify-content: center;
+    position: fixed;
+    z-index: 2;
 }
 
 .headerStyle h1 {

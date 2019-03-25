@@ -54,7 +54,7 @@ class WorldBankAPI extends Component {
           <p> Purchasing Power </p>
         <div className="worldBankDiv">
         	<p> { this.props.departureCode } </p>
-        	<p> {ppp} </p>	
+        	<div> {ppp} </div>	
         </div>
       </section>
     )

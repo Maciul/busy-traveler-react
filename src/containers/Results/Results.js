@@ -49,7 +49,8 @@ class Results extends Component {
 		return (
 			<div className="resultsMain">
 				<RestCountriesAPI
-					arrival={this.state.arrival}
+					arrival={this.state.arrivalCode}
+					departure={this.state.departureCode}
 				/> 
 				<FlickrAPI
 					arrival={this.state.arrival}

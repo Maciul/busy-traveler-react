@@ -13,8 +13,6 @@ state = {
     pickedCountryToCode: null,
     showFromInput: true,
     showToInput: false,
-
-
   }
 
   countryTo = ( country ) => {

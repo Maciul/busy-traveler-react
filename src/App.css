@@ -21,6 +21,8 @@ p {
   justify-content: normal;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: relative;
+  top: 10vh;
 }
 
 .App-link {
