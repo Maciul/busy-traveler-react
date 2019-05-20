@@ -13,7 +13,9 @@ p {
 }
 
 .App-main {
-  background-color: #FFFFFF;
+  background-image: url('https://image.freepik.com/free-vector/modern-world-map-background_1035-7605.jpg');
+  background-size:  cover;
+  background-position: center;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
