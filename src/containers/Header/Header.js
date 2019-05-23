@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
+import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import './Header.css';
 
-
-
 class Header extends Component {
-
-	shouldComponentUpdate() {
-		console.log( 'Header: ShouldUpdate', this.props );
-		return true;
-	}
-
-	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
-		console.log( 'Header: getSnapshotBeforeUpdate' );
-	}
-
-	componentDidUpdate() {
-		console.log( "Header: DidUpdate" );
-	}
-
-	componentWillUnmount() {
-		console.log( "Header: WillUnmount" );
-	}
-
-	getDerivedStateFromProps( props, state ) {
-  		console.log( "Header: getDerivedStateFromProps", props, state )
-  }
-	
 	render() {
 		return (
-			<header className="headerStyle">
-				<div className="headerTitle"> 
-					<h1>Busy Traveler: </h1>
-					<p> “Traveling – it leaves you speechless, then turns you into a storyteller.” </p>
-				</div>
-			</header>
+			<Navbar expand="lg" bg="light" variant="light">
+    			<Navbar.Brand href="/" className="mr-auto">
+				      <img
+				        src="../../images/noun_Traveler_1914086.png"
+				        width="75"
+				        height="75"
+				        className="d-inline-block rounded"
+				        alt="Busy Traveler Logo"
+				      	/>
+					{'Busy Traveler'}
+    			</Navbar.Brand>
+  			</Navbar>
 		)
 	}
 }

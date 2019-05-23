@@ -1,17 +1,17 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import './InputForm.css';
 const Typeahead = require('react-typeahead').Typeahead;
 
 
 const inputForm = ( props ) => {
-          console.log( "FN-Input Form", props );
           return (
             <div className="wrapper">
                 <section className={ props.showFromInput ? 'show' : 'hide' }>
                   <Typeahead
                     options= { props.countries }
                     maxVisible={10}
-                    placeholder="Where you coming from"
+                    placeholder="Where From?"
                     onOptionSelected={ ( country ) => props.countryFrom( country ) }
                   />
                 </section>
@@ -20,14 +20,13 @@ const inputForm = ( props ) => {
                   <Typeahead
                     options= { props.countries }
                     maxVisible={10}
-                    placeholder="and going to...?"
+                    placeholder="Where to?"
                     onOptionSelected={ ( country ) => props.countryTo( country ) }
                   />
                 </section>
 
                 <section className={ !props.showToInput && !props.showFromInput ? 'show' : 'hide' } >
-                <h3> LFG </h3> 
-                <button onClick={ props.lfg } > LFG! </button>
+                <Button variant="light" onClick={ props.lfg } size="lg">Lets Roll</Button>
                 </section>
             </div>
       )        

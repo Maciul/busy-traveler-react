@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import TypeAhead from '../../components/InputForm/InputForm'
+import InputFormLogic from '../../components/InputForm/InputForm'
+import './MainPage.css';
 
 class InputForm extends Component {
 	
@@ -54,29 +55,12 @@ state = {
 	      } )
 	  }
 
-	shouldComponentUpdate() {
-		console.log( 'Input Forms: ShouldUpdate', this.props );
-		return true
-	}
-
-	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
-		console.log( 'Input Forms: getSnapshotBeforeUpdate', 'prevProps', prevProps, 'prevState', prevState,'snapshot', snapshot );
-		return null;
-		
-	}
-
-	componentDidUpdate() {
-		console.log( "Input Forms: DidUpdate" );
-	}
-
-	componentWillUnmount() {
-		console.log( "Input Forms: WillUnmount" );
-	}
-
 	render() {
 		console.log( "Input Form Render" );
 		return (
-				<TypeAhead
+			<>
+				<h1 className="addTitleFont"> Busy Traveler </h1>
+				<InputFormLogic
 		            countries={this.state.countries}
 		            showFromInput={this.state.showFromInput}
 		            showToInput={this.state.showToInput}
@@ -86,6 +70,7 @@ state = {
 		            pickedCountryTo= {this.state.pickedCountryTo } 
 		            lfg= { this.getResults }
 				/>
+				</>
 		)
 	}
 }

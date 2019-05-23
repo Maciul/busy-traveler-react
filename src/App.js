@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import InputForm from './containers/InputForm/InputForm';
+import MainPage from './containers/MainPage/MainPage';
 import Results from './containers/Results/Results'
 import Header from './containers/Header/Header'
+import DisplayBody from './containers/DisplayBody/DisplayBody'
 import { Route, Switch } from 'react-router-dom';
-import logo from './terrain.png'
 
 import './App.css';
 
@@ -12,16 +12,16 @@ class App extends Component {
     let routes = (
         <Switch> 
           <Route path="/results" component={ Results } /> 
-          <Route path="/" component={ InputForm } /> 
+          <Route path="/" component={ MainPage } /> 
         </Switch>
       );
     return (
       <React.Fragment> 
         <Header />
-        <main className="App-main">
+        <DisplayBody>
           { routes }
-        </main>
-        </React.Fragment>
+        </DisplayBody>
+      </React.Fragment>
     );
   }
 }

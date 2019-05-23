@@ -21,28 +21,6 @@ class Results extends Component {
 		}
 
 }
-
-
-	shouldComponentUpdate() {
-		console.log( 'Results: ShouldUpdate', this.props );
-		return true;
-	}
-
-	getSnapshotBeforeUpdate( prevProps, prevState, snapshot ) {
-		console.log( 'Results: getSnapshotBeforeUpdate' );
-	}
-
-	componentDidUpdate() {
-		console.log( "Results: DidUpdate" );
-	}
-
-	componentWillUnmount() {
-		console.log( "Results: WillUnmount" );
-	}
-
-	getDerivedStateFromProps( props, state ) {
-  		console.log( "Results: getDerivedStateFromProps", props, state )
-  }
 	
 	render() {
 		console.log( 'results state', this.state, this.state.arrival )
