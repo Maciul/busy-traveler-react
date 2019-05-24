@@ -2,31 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
-import reducer from './store/reducers/reducers'
-import { addCountryArrive, addCountryDepart, addText } from './store/actions/actions'
-import 'bootstrap/dist/css/bootstrap.css'
+import reducer from './store/reducers/reducers';
+// import { addCountryArrive, addCountryDepart, addText } from './store/actions/actions';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore( reducer,
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+const store = createStore(reducer,
+	// eslint-disable-next-line no-underscore-dangle
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-console.log(store.getState())
+console.log(store.getState());
 
-const unsubscribe = store.subscribe(() => console.log(store.getState()))
+// const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
-store.dispatch( addCountryArrive ("poland"))
-store.dispatch( addCountryDepart ("poland"))
-store.dispatch( addText ("poland"))
-store.dispatch( addText ("poland"))
+// store.dispatch(addCountryArrive('poland'));
+// store.dispatch(addCountryDepart('poland'));
+// store.dispatch(addText('poland'));
+// store.dispatch(addText('poland'));
 
 const app = (
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	)
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
+);
 
 ReactDOM.render(app, document.getElementById('root'));
 

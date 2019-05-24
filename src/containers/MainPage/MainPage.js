@@ -1,62 +1,65 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import InputFormLogic from '../../components/InputForm/InputForm'
+import axios from 'axios';
+import InputFormLogic from '../../components/InputForm/InputForm';
 import './MainPage.css';
 
 class InputForm extends Component {
-	
 state = {
-    countries: null,
-    countryToAlpha3Code: {},
-    pickedCountryFromText: null, 
-    pickedCountryToText: null,
-    pickedCountryFromCode: null, 
-    pickedCountryToCode: null,
-    showFromInput: true,
-    showToInput: false,
-  }
+	countries: null,
+	countryToAlpha3Code: {},
+	pickedCountryFromText: null,
+	pickedCountryToText: null,
+	pickedCountryFromCode: null,
+	pickedCountryToCode: null,
+	showFromInput: true,
+	showToInput: false,
+}
 
-  countryTo = ( country ) => {
-      this.setState( { 
-        pickedCountryToText: country, 
-        pickedCountryToCode: this.state.countryToAlpha3Code[ country ],
-        showToInput: false
-       } )
-  }
-
-  countryFrom = ( country ) => {
-      this.setState( { 
-        pickedCountryFromText: country, 
-        pickedCountryFromCode: this.state.countryToAlpha3Code[ country ],
-        showFromInput: false,
-        showToInput: true
-       } )
-  }
-
-  getResults = () => {
-  	const queryString = `?departingCountry=${this.state.pickedCountryFromText}&arrivalCountry=${this.state.pickedCountryToText}&departureCountryCode=${this.state.pickedCountryFromCode}&arrivalCountryCode=${this.state.pickedCountryToCode}`;
-	this.props.history.push({
-	pathname: '/results',
-	search: queryString
-        });
-  }
-
-	componentDidMount() {
-		console.log( "Input Forms: Did Mount" );
-	    axios.get( 'https://restcountries.eu/rest/v2/all?fields=name;alpha3Code' )
-	      .then( res => {
-	        let countries = []
-	        let countryToAlpha3Code = {} 
-	        res.data.forEach( country => {
-	        	countries.push( country.name )
-	        	countryToAlpha3Code[country.name] = country.alpha3Code
-	        })
-	        this.setState( { countries: countries, countryToAlpha3Code: countryToAlpha3Code } )
-	      } )
+componentDidMount() {
+	console.log('Input Forms: Did Mount');
+	    axios.get('https://restcountries.eu/rest/v2/all?fields=name;alpha3Code')
+	      .then((res) => {
+	        const countries = [];
+	        const countryToAlpha3Code = {};
+	        res.data.forEach((country) => {
+				countries.push(country.name);
+				countryToAlpha3Code[country.name] = country.alpha3Code;
+	        });
+	        this.setState({ countries, countryToAlpha3Code });
+	      });
 	  }
 
-	render() {
-		console.log( "Input Form Render" );
+	countryTo = (country) => {
+		this.setState((prevState) => ({
+			pickedCountryToText: country,
+			pickedCountryToCode: prevState.countryToAlpha3Code[country],
+			showToInput: false,
+		}));
+	}
+
+	countryFrom = (country) => {
+		this.setState((prevState) => ({
+			pickedCountryFromText: country,
+			pickedCountryFromCode: prevState.countryToAlpha3Code[country],
+			showFromInput: false,
+			showToInput: true,
+		}));
+	}
+
+	getResults = () => {
+		const {
+			pickedCountryFromText, pickedCountryToText, pickedCountryToCode, pickedCountryFromCode,
+		} = this.state;
+		/* eslint-disable-next-line max-len */
+		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${pickedCountryFromCode}&arrivalCountryCode=${pickedCountryToCode}`;
+		this.props.history.push({
+			pathname: '/results',
+			search: queryString,
+		});
+	}
+
+	  render() {
+		console.log('Input Form Render');
 		return (
 			<>
 				<h1 className="addTitleFont"> Busy Traveler </h1>
@@ -64,15 +67,15 @@ state = {
 		            countries={this.state.countries}
 		            showFromInput={this.state.showFromInput}
 		            showToInput={this.state.showToInput}
-		            countryFrom={this.countryFrom} 
-		            countryTo={ this.countryTo } 
-		            pickedCountryFrom= {this.state.pickedCountryFrom } 
-		            pickedCountryTo= {this.state.pickedCountryTo } 
-		            lfg= { this.getResults }
+		            countryFrom={this.countryFrom}
+		            countryTo={this.countryTo}
+		            pickedCountryFrom={this.state.pickedCountryFrom}
+		            pickedCountryTo={this.state.pickedCountryTo}
+		            lfg={this.getResults}
 				/>
-				</>
-		)
-	}
+			</>
+		);
+	  }
 }
 
 export default InputForm;

@@ -1,19 +1,18 @@
 
-import React, {Component} from 'react';
-import './StatDisplay.css'
+import React from 'react';
+import styles from './StatDisplay.css';
 
-class StatDisplay extends Component {
-  render() {
-  	const { name, stat } = this.props;
-    const statnumber = stat && typeof stat === 'number' ? stat.toLocaleString() : stat;
+const StatDisplay = (props) => {
+	console.log(styles);
+	const { name, stat } = props;
+	const statnumber = stat && typeof stat === 'number' ? stat.toLocaleString() : stat;
     
-    return (
-      <React.Fragment>
-          <h3> {name} </h3>
-          <span> {stat || statnumber} </span>
-      </React.Fragment>
-    )
-  }
-}
+	return (
+		<React.Fragment>
+			<h3 className={styles.hello}> {name} </h3>
+			<span> {stat || statnumber} </span>
+		</React.Fragment>
+	);
+};
 
-export default StatDisplay
+export default StatDisplay;

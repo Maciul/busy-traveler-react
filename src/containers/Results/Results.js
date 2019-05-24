@@ -1,60 +1,59 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './Results.css';
-import FlickrAPI from '../../components/FlickrAPI/FlickrAPI'
-import RestCountriesAPI from '../../components/RestCountriesAPI/RestCountriesAPI'
-import WorldBankAPI from '../../components/WorldBankAPI/WorldBankAPI'
-
+import FlickrAPI from '../../components/FlickrAPI/FlickrAPI';
+import RestCountriesAPI from '../../components/RestCountriesAPI/RestCountriesAPI';
+import WorldBankAPI from '../../components/WorldBankAPI/WorldBankAPI';
 
 
 class Results extends Component {
-	constructor( props ) {
-		super( props )
+	constructor(props) {
+		super(props);
 
-		const params = new URLSearchParams( this.props.location.search ); 
+		const params = new URLSearchParams(this.props.location.search);
 		
 		
 		this.state = {
 			departure: params.get('departingCountry'),
-			arrival: params.get( 'arrivalCountry'),
-			departureCode: params.get('departureCountryCode'), 
-			arrivalCode: params.get('arrivalCountryCode')
-		}
-
-}
+			arrival: params.get('arrivalCountry'),
+			departureCode: params.get('departureCountryCode'),
+			arrivalCode: params.get('arrivalCountryCode'),
+		};
+	}
 	
 	render() {
-		console.log( 'results state', this.state, this.state.arrival )
+		console.log('results state', this.state, this.state.arrival);
 		return (
 			<>
 			<Container className="results">
 				<Row>
 					<Col>
-			    	<RestCountriesAPI
-						arrival={this.state.arrivalCode}
-						departure={this.state.departureCode}
-					/>
+						<RestCountriesAPI
+							arrival={this.state.arrivalCode}
+							departure={this.state.departureCode}
+						/>
 					</Col>
 					<Col>Hello</Col>
 				</Row>
 				<Row>
-				<Col>
-			    	<WorldBankAPI
-						arrivalCode={this.state.arrivalCode}
-						departureCode={this.state.departureCode}
+					<Col>
+						<WorldBankAPI
+							arrivalCode={this.state.arrivalCode}
+							departureCode={this.state.departureCode}
+						/>
+					</Col>
+				</Row>
+				<Row>
+					<Col sm><FlickrAPI
+						arrival={this.state.arrival}
 					/>
-				</Col>
-			  	</Row>
-			  	<Row>
-			    	<Col sm><FlickrAPI
-							arrival={this.state.arrival}
-						/></Col>
-			    	<Col sm>sm=true</Col>
-			    	<Col sm>sm=true</Col>
-			  	</Row>
+					</Col>
+					<Col sm>sm=true</Col>
+					<Col sm>sm=true</Col>
+				</Row>
 			</Container>
 			</>
-		)
+		);
 	}
 }
 

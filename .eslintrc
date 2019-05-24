@@ -82,7 +82,8 @@
       120,
       {
         "ignoreComments": true,
-        "tabWidth": 2
+        "tabWidth": 2,
+        "ignoreUrls": true,
       }
     ],
     "no-tabs": 0,
