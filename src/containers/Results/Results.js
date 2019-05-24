@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import './Results.css';
 import FlickrAPI from '../../components/FlickrAPI/FlickrAPI'
 import RestCountriesAPI from '../../components/RestCountriesAPI/RestCountriesAPI'
@@ -25,19 +26,34 @@ class Results extends Component {
 	render() {
 		console.log( 'results state', this.state, this.state.arrival )
 		return (
-			<div className="resultsMain">
-				<RestCountriesAPI
-					arrival={this.state.arrivalCode}
-					departure={this.state.departureCode}
-				/> 
-				<FlickrAPI
-					arrival={this.state.arrival}
-				/>
-				<WorldBankAPI
-					arrivalCode={this.state.arrivalCode}
-					departureCode={this.state.departureCode}
-				/>
-			</div>
+			<>
+			<Container className="results">
+				<Row>
+					<Col>
+			    	<RestCountriesAPI
+						arrival={this.state.arrivalCode}
+						departure={this.state.departureCode}
+					/>
+					</Col>
+					<Col>Hello</Col>
+				</Row>
+				<Row>
+				<Col>
+			    	<WorldBankAPI
+						arrivalCode={this.state.arrivalCode}
+						departureCode={this.state.departureCode}
+					/>
+				</Col>
+			  	</Row>
+			  	<Row>
+			    	<Col sm><FlickrAPI
+							arrival={this.state.arrival}
+						/></Col>
+			    	<Col sm>sm=true</Col>
+			    	<Col sm>sm=true</Col>
+			  	</Row>
+			</Container>
+			</>
 		)
 	}
 }
