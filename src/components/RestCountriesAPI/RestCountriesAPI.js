@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import classes from './InputForm.css';
 import axios from 'axios';
 import './RestCountriesAPI.css';
+import StatDisplay from '../StatDisplay/StatDisplay'
 
 class RestCountriesAPI extends Component {
 
@@ -51,6 +52,10 @@ class RestCountriesAPI extends Component {
     return (
 
       <section> 
+      <StatDisplay
+      name={'population'}
+      stat={this.state.country.population}
+      />
           <p> Info: </p>
         <div className="holder">
           <div className="country">

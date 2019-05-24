@@ -1,0 +1,13 @@
+span {
+	font-size: 36px;
+    font-weight: bold;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+h3 {
+	font-size: .875rem;
+    font-family: 'Montaga', serif;
+    margin: 11px 0 11px 20px;
+}
