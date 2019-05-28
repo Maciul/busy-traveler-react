@@ -24,7 +24,9 @@ componentDidMount() {
 	        res.data.forEach((country) => {
 				countries.push(country.name);
 				countryToAlpha3Code[country.name] = country.alpha3Code;
-	        });
+			});
+					
+			// AR: Loading States Could Be Handled with this too
 	        this.setState({ countries, countryToAlpha3Code });
 	      });
 	  }
@@ -38,6 +40,7 @@ componentDidMount() {
 	}
 
 	countryFrom = (country) => {
+		// AR: No need to use prevState if you aren't referencing state in the change.
 		this.setState((prevState) => ({
 			pickedCountryFromText: country,
 			pickedCountryFromCode: prevState.countryToAlpha3Code[country],
@@ -52,6 +55,15 @@ componentDidMount() {
 		} = this.state;
 		/* eslint-disable-next-line max-len */
 		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${pickedCountryFromCode}&arrivalCountryCode=${pickedCountryToCode}`;
+		/** AR: Could turn this into a utility?
+		 * 
+		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
+		 * 		const prefix = carry.length === 1 ? '' : '&';
+		 * 		return  `${prefix}${carry}${key}=${obj[key]}
+		 * }, '?')
+		 * 
+		 *
+		 */
 		this.props.history.push({
 			pathname: '/results',
 			search: queryString,
