@@ -36,7 +36,6 @@ class WorldBankAPI extends Component {
 			);
 		}
 		return (
-
 			<section>
 				<p> Purchasing Power </p>
 				<div className="worldBankDiv">

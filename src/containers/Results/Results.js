@@ -22,7 +22,7 @@ class Results extends Component {
 	}
 	
 	render() {
-		console.log('results state', this.state, this.state.arrival);
+		// console.log('results state', this.state, this.state.arrival);
 		return (
 			<>
 			<Container className="results">
@@ -33,7 +33,6 @@ class Results extends Component {
 							departure={this.state.departureCode}
 						/>
 					</Col>
-					<Col>Hello</Col>
 				</Row>
 				<Row>
 					<Col>
@@ -44,12 +43,10 @@ class Results extends Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col sm><FlickrAPI
+					<Col lg><FlickrAPI
 						arrival={this.state.arrival}
 					/>
 					</Col>
-					<Col sm>sm=true</Col>
-					<Col sm>sm=true</Col>
 				</Row>
 			</Container>
 			</>

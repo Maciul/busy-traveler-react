@@ -1,16 +1,25 @@
 
 import React from 'react';
-import styles from './StatDisplay.css';
+import { Image } from 'react-bootstrap';
+import styles from './StatDisplay.module.css';
+
 
 const StatDisplay = (props) => {
-	console.log(styles);
-	const { name, stat } = props;
-	const statnumber = stat && typeof stat === 'number' ? stat.toLocaleString() : stat;
-    
+	const {
+		name, statOne, statTwo, imageOne, imageTwo,
+	} = props;
+	const difference = (statOne - statTwo);
+	const formattedStatOne = statOne && typeof statOne === 'number' ? statOne.toLocaleString() : statOne;
+	const formattedStatTwo = statTwo && typeof statTwo === 'number' ? statTwo.toLocaleString() : statTwo;
+	
 	return (
 		<React.Fragment>
-			<h3 className={styles.hello}> {name} </h3>
-			<span> {stat || statnumber} </span>
+			<div className={styles.statContainer}>
+				<h3 className={styles.statTitle}> {name} </h3>
+				<p><Image className={styles.imageSize} src={imageOne} thumbnail /> {formattedStatOne} </p>
+				<p><Image className={styles.imageSize} src={imageTwo} thumbnail /> {formattedStatTwo} </p>
+				<p className={difference > 0 ? styles.green : styles.red}> { difference.toLocaleString() } </p>
+			</div>
 		</React.Fragment>
 	);
 };

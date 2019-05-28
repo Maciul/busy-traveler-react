@@ -1,65 +1,59 @@
 import React, { Component } from 'react';
 // import classes from './InputForm.css';
+import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import './RestCountriesAPI.css';
 import StatDisplay from '../StatDisplay/StatDisplay';
 
 class RestCountriesAPI extends Component {
 	state = {
-		country: {},
+		arrivalCountry: {},
+		departureCountry: {},
 	}
 
 	componentDidMount() {
-		console.log('REST: Did Mount', this.props);
 		axios.get(`https://restcountries.eu/rest/v2/alpha?codes=${this.props.arrival};${this.props.departure}`)
 			.then((res) => {
-				console.log('response', res);
-				const countryData = res.data[0];
-				this.setState({ country: countryData });
+				this.setState({ arrivalCountry: res.data[0], departureCountry: res.data[1] });
 			});
 	}
 
 	render() {
-		const {
-			currencies, population, flag, capital, nativeName, region, subregion,
-		} = this.state.country;
-		
-		let currencyList = [];
-		if (currencies) {
-			currencyList = currencies.map((currency, index) => (
-				<li key={index}>{currency.name}
-					<ul>
-						<li> Code: {currency.code} </li>
-						<li> Symbol: {currency.symbol} </li>
-					</ul>
-				</li>
-			));
-		}
-	
+		const arrival = this.state.arrivalCountry;
+		const departure = this.state.departureCountry;
+		console.log(this.state);
 		return (
-			<section>
-				<StatDisplay
-					name="population"
-					stat={population}
-				/>
-				<p> Info: </p>
-				<div className="holder">
-					<div className="country">
-						<img src={flag} alt="" />
-					</div>
-					<div className="info">
-						<p> Capital: { capital }</p>
-						<p> Currencies: </p>
-						<ul>
-							{ currencyList }
-						</ul>
-						<p> Native Name: { nativeName }</p>
-						<p> Region: { region }</p>
-						<p> Sub-Region: { subregion }</p>
-						<p> Population: { population && (population).toLocaleString('en') }</p>
-					</div>
-				</div>
-			</section>
+			<Container>
+				<Row>
+					<Col>
+						<StatDisplay
+							name="population"
+							statOne={departure.population}
+							statTwo={arrival.population}
+							imageOne={departure.flag}
+							imageTwo={arrival.flag}
+						/>
+					</Col>
+					<Col>
+						<StatDisplay
+							name="area"
+							statOne={departure.area}
+							statTwo={arrival.area}
+							imageOne={departure.flag}
+							imageTwo={arrival.flag}
+						/>
+					</Col>
+					<Col>
+						<StatDisplay
+							name="gini coefficient"
+							statOne={departure.gini}
+							statTwo={arrival.gini}
+							imageOne={departure.flag}
+							imageTwo={arrival.flag}
+						/>
+					</Col>
+				</Row>
+			</Container>
 		);
 	}
 }
