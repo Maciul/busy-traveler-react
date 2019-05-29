@@ -13,6 +13,10 @@ export const ADD_TEXT = 'ADD_TEXT';
  * action creators
  */
 
+/**
+ * AR: I Would checkout Flux Standard Actions.  Consistent shapes of { type, payload, meta, error } (if applicable)
+ */
+
 export function addCountryDepart(country) {
 	return { type: ADD_COUNTRY_DEPART, country };
 }
