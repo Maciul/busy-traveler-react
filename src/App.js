@@ -9,20 +9,14 @@ import './App.css';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
 	render() {
-		/** AR: any reason for this?  Unless they need to have some complex configuration or mapping I'd just put
-		 * them inline.
-		 */
-		const routes = (
-			<Switch>
-				<Route path="/results" component={Results} />
-				<Route path="/" component={MainPage} />
-			</Switch>
-		);
 		return (
 			<React.Fragment>
 				<Header />
 				<DisplayBody>
-					{ routes }
+					<Switch>
+						<Route path="/results" component={Results} />
+						<Route path="/" component={MainPage} />
+					</Switch>
 				</DisplayBody>
 			</React.Fragment>
 		);

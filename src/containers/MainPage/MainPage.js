@@ -16,7 +16,6 @@ state = {
 }
 
 componentDidMount() {
-	console.log('Input Forms: Did Mount');
 	    axios.get('https://restcountries.eu/rest/v2/all?fields=name;alpha3Code')
 	      .then((res) => {
 	        const countries = [];
@@ -56,12 +55,12 @@ componentDidMount() {
 		/* eslint-disable-next-line max-len */
 		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${pickedCountryFromCode}&arrivalCountryCode=${pickedCountryToCode}`;
 		/** AR: Could turn this into a utility?
-		 * 
+		 *
 		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
 		 * 		const prefix = carry.length === 1 ? '' : '&';
 		 * 		return  `${prefix}${carry}${key}=${obj[key]}
 		 * }, '?')
-		 * 
+		 *
 		 *
 		 */
 		this.props.history.push({
@@ -71,7 +70,6 @@ componentDidMount() {
 	}
 
 	  render() {
-		console.log('Input Form Render');
 		return (
 			<>
 				<h1 className="addTitleFont"> Busy Traveler </h1>

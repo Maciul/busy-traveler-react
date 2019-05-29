@@ -6,7 +6,6 @@ import WithLoading from '../../hoc/WithLoading/WithLoading';
 
 const PhotoGallery = (props) => (
 	<React.Fragment>
-		<p> Photos </p>
 		<div className={styles.grid}>
 			{ props.photoArray.map(({ url, id }) => (
 				<div key={id} className={styles.item} style={{ backgroundImage: `url(${url})` }} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import classes from './InputForm.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import './RestCountriesAPI.css';
+import './CountryStats.css';
 import StatDisplay from '../StatDisplay/StatDisplay';
 
 class RestCountriesAPI extends Component {
@@ -10,6 +10,7 @@ class RestCountriesAPI extends Component {
 		arrival: {},
 		departure: {},
 		worldBank: {},
+		isLoading: true,
 	}
 
 	componentDidMount() {
@@ -17,13 +18,12 @@ class RestCountriesAPI extends Component {
 
 		axios.get(`https://restcountries.eu/rest/v2/alpha?codes=${arrivalCode};${departureCode}`)
 			.then((res) => {
-				this.setState({ arrival: res.data[0], departure: res.data[1] });
+				this.setState({ arrival: res.data[0], departure: res.data[1], isLoading: false });
 			});
 
 		const url = `https://api.worldbank.org/v2/country/${arrivalCode};${departureCode}/indicator/PA.NUS.PPPC.RF?format=json&date=2017`;
 		axios.get(url)
 			.then((res) => {
-				console.log('res', res);
 				const wbData = {};
 				res.data[1].forEach((data) => {
 					wbData[data.countryiso3code] = data.value;
@@ -33,45 +33,51 @@ class RestCountriesAPI extends Component {
 	}
 
 	render() {
-		const { arrival, departure, worldBank } = this.state;
+		const {
+			arrival, departure, worldBank, isLoading,
+		} = this.state;
 		const { arrivalCode, departureCode } = this.props;
 		return (
 			<Container>
 				<Row>
 					<Col>
 						<StatDisplay
-							name="purchasing power"
+							name="Purchasing Power Parity"
 							statOne={worldBank[departureCode]}
 							statTwo={worldBank[arrivalCode]}
 							imageOne={departure.flag}
 							imageTwo={arrival.flag}
+							isLoading={isLoading}
 						/>
 					</Col>
 					<Col>
 						<StatDisplay
-							name="population"
+							name="Population"
 							statOne={departure.population}
 							statTwo={arrival.population}
 							imageOne={departure.flag}
 							imageTwo={arrival.flag}
+							isLoading={isLoading}
 						/>
 					</Col>
 					<Col>
 						<StatDisplay
-							name="area"
+							name="Area"
 							statOne={departure.area}
 							statTwo={arrival.area}
 							imageOne={departure.flag}
 							imageTwo={arrival.flag}
+							isLoading={isLoading}
 						/>
 					</Col>
 					<Col>
 						<StatDisplay
-							name="gini coefficient"
+							name="Gini coefficient"
 							statOne={departure.gini}
 							statTwo={arrival.gini}
 							imageOne={departure.flag}
 							imageTwo={arrival.flag}
+							isLoading={isLoading}
 						/>
 					</Col>
 				</Row>

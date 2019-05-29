@@ -14,8 +14,7 @@ const Header = () => (
 				        className="d-inline-block rounded"
 				        alt="Busy Traveler Logo"
 				      />
-			{'Busy Traveler'
-			/** AR: You Don't need the brackets and the Strings here :) */} 
+			Busy Traveler
 		</Navbar.Brand>
 	</Navbar>
 );

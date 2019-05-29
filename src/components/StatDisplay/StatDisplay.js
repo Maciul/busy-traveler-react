@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
 import styles from './StatDisplay.module.css';
-
+import WithLoading from '../../hoc/WithLoading/WithLoading';
 
 const StatDisplay = (props) => {
 	const {
@@ -24,4 +24,4 @@ const StatDisplay = (props) => {
 	);
 };
 
-export default StatDisplay;
+export default WithLoading(StatDisplay);
