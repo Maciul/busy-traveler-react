@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import './Results.css';
 import FlickrAPI from '../../components/FlickrAPI/FlickrAPI';
 import RestCountriesAPI from '../../components/RestCountriesAPI/RestCountriesAPI';
-import WorldBankAPI from '../../components/WorldBankAPI/WorldBankAPI';
 
 
 class Results extends Component {
@@ -27,25 +26,21 @@ class Results extends Component {
 			<>
 			<Container className="results">
 				<Row>
-					<Col>
-						<RestCountriesAPI
-							arrival={this.state.arrivalCode}
-							departure={this.state.departureCode}
-						/>
-					</Col>
+					<Col xs={{ span: 6, offset: 6 }}> Hello </Col>
 				</Row>
 				<Row>
-					<Col>
-						<WorldBankAPI
+					<Col sm={{ span: 12 }}>
+						<RestCountriesAPI
 							arrivalCode={this.state.arrivalCode}
 							departureCode={this.state.departureCode}
 						/>
 					</Col>
 				</Row>
 				<Row>
-					<Col lg><FlickrAPI
-						arrival={this.state.arrival}
-					/>
+					<Col>
+						<FlickrAPI
+							arrival={this.state.arrival}
+						/>
 					</Col>
 				</Row>
 			</Container>

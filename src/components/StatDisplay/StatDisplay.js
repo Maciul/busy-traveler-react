@@ -8,7 +8,7 @@ const StatDisplay = (props) => {
 	const {
 		name, statOne, statTwo, imageOne, imageTwo,
 	} = props;
-	const difference = (statOne - statTwo);
+	const difference = (statTwo - statOne);
 	const formattedStatOne = statOne && typeof statOne === 'number' ? statOne.toLocaleString() : statOne;
 	const formattedStatTwo = statTwo && typeof statTwo === 'number' ? statTwo.toLocaleString() : statTwo;
 	
@@ -18,7 +18,7 @@ const StatDisplay = (props) => {
 				<h3 className={styles.statTitle}> {name} </h3>
 				<p><Image className={styles.imageSize} src={imageOne} thumbnail /> {formattedStatOne} </p>
 				<p><Image className={styles.imageSize} src={imageTwo} thumbnail /> {formattedStatTwo} </p>
-				<p className={difference > 0 ? styles.green : styles.red}> { difference.toLocaleString() } </p>
+				<p className={difference > 0 ? styles.green : styles.red}> { Math.abs(difference).toLocaleString() } </p>
 			</div>
 		</React.Fragment>
 	);

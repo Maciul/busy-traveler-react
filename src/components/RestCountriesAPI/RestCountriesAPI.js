@@ -7,24 +7,46 @@ import StatDisplay from '../StatDisplay/StatDisplay';
 
 class RestCountriesAPI extends Component {
 	state = {
-		arrivalCountry: {},
-		departureCountry: {},
+		arrival: {},
+		departure: {},
+		worldBank: {},
 	}
 
 	componentDidMount() {
-		axios.get(`https://restcountries.eu/rest/v2/alpha?codes=${this.props.arrival};${this.props.departure}`)
+		const { arrivalCode, departureCode } = this.props;
+
+		axios.get(`https://restcountries.eu/rest/v2/alpha?codes=${arrivalCode};${departureCode}`)
 			.then((res) => {
-				this.setState({ arrivalCountry: res.data[0], departureCountry: res.data[1] });
+				this.setState({ arrival: res.data[0], departure: res.data[1] });
+			});
+
+		const url = `https://api.worldbank.org/v2/country/${arrivalCode};${departureCode}/indicator/PA.NUS.PPPC.RF?format=json&date=2017`;
+		axios.get(url)
+			.then((res) => {
+				console.log('res', res);
+				const wbData = {};
+				res.data[1].forEach((data) => {
+					wbData[data.countryiso3code] = data.value;
+				});
+				this.setState({ worldBank: wbData });
 			});
 	}
 
 	render() {
-		const arrival = this.state.arrivalCountry;
-		const departure = this.state.departureCountry;
-		console.log(this.state);
+		const { arrival, departure, worldBank } = this.state;
+		const { arrivalCode, departureCode } = this.props;
 		return (
 			<Container>
 				<Row>
+					<Col>
+						<StatDisplay
+							name="purchasing power"
+							statOne={worldBank[departureCode]}
+							statTwo={worldBank[arrivalCode]}
+							imageOne={departure.flag}
+							imageTwo={arrival.flag}
+						/>
+					</Col>
 					<Col>
 						<StatDisplay
 							name="population"
