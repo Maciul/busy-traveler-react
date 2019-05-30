@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import InputFormLogic from '../../components/InputForm/InputForm';
+import InputFormLogic from '../InputForm/InputForm';
 import './MainPage.css';
 
 class InputForm extends Component {

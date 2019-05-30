@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import './CountryStats.css';
-import StatDisplay from '../StatDisplay/StatDisplay';
+import StatDisplay from '../../components/StatDisplay/StatDisplay';
 
 class RestCountriesAPI extends Component {
 	state = {
@@ -39,7 +39,7 @@ class RestCountriesAPI extends Component {
 		const { arrivalCode, departureCode } = this.props;
 		return (
 			<Container>
-				<Row>
+				<Row style={{ boxShadow: '1px 1px 5px 1px' }}>
 					<Col>
 						<StatDisplay
 							name="Purchasing Power Parity"

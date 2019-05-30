@@ -5,8 +5,9 @@ import { Container, Row, Col } from 'react-bootstrap';
  * AR: One of the issues with using these inline components is that they make their own stylesheet a piece.  Check your
  * head document.
 */
-import FlickrAPI from '../../components/FlickrAPI/FlickrAPI';
-import CountryStats from '../../components/CountryStats/CountryStats';
+import PhotoGallery from '../PhotoGallery/PhotoGallery';
+import CountryStats from '../CountryStats/CountryStats';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 class Results extends Component {
 	constructor(props) {
@@ -32,17 +33,26 @@ class Results extends Component {
 		return (
 			<Container className="results">
 				<Row>
-					<Col xs={{ span: 6, offset: 6 }}> Hello </Col>
+					<Col>
+						<SectionTitle title="Comparison Stats" />
+					</Col>
 				</Row>
 				<Row>
-					<Col sm={{ span: 12 }}>
+					<Col>
 						<CountryStats
 							arrivalCode={this.state.arrivalCode}
 							departureCode={this.state.departureCode}
 						/>
 					</Col>
+				</Row>
+				<Row>
 					<Col>
-						<FlickrAPI
+						<SectionTitle title="Photos" />
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<PhotoGallery
 							arrival={this.state.arrival}
 						/>
 					</Col>

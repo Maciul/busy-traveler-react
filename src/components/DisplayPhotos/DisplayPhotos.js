@@ -1,7 +1,7 @@
 
 import React from 'react';
 // import { Image } from 'react-bootstrap';
-import styles from './PhotoGallery.module.css';
+import styles from './DisplayPhotos.module.css';
 import WithLoading from '../../hoc/WithLoading/WithLoading';
 
 const PhotoGallery = (props) => (

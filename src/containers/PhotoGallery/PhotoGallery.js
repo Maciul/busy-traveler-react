@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import classes from './InputForm.css';
 import axios from 'axios';
-// import './FlickrAPI.css';
-import PhotoGallery from '../PhotoGallery/PhotoGallery';
+import DisplayPhotos from '../../components/DisplayPhotos/DisplayPhotos';
 
 class FlickrAPI extends Component {
 	state = {
@@ -22,11 +20,8 @@ class FlickrAPI extends Component {
 	}
 
 	render() {
-		// const displayAmazingPhotos = this.state.photos.map((photoLink, index) => (
-		// 	<div className="cell" key={index}><img src={photoLink} alt="" key={index} className="responsive" /></div>
-		// ));
 		return (
-			  <PhotoGallery
+			  <DisplayPhotos
 				isLoading={this.state.isLoading}
 				photoArray={this.state.photos}
 			  />

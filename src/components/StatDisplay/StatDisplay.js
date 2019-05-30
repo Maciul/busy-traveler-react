@@ -15,7 +15,7 @@ const StatDisplay = (props) => {
 	return (
 		<React.Fragment>
 			<div className={styles.statContainer}>
-				<h3 className={styles.statTitle}> {name} </h3>
+				<h6 className={styles.statTitle}> {name} </h6>
 				<p><Image className={styles.imageSize} src={imageOne} thumbnail /> {formattedStatOne} </p>
 				<p><Image className={styles.imageSize} src={imageTwo} thumbnail /> {formattedStatTwo} </p>
 				<p className={difference > 0 ? styles.green : styles.red}> { Math.abs(difference).toLocaleString() } </p>
