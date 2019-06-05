@@ -2,16 +2,18 @@ import React from 'react';
 import {
 	Navbar,
 } from 'react-bootstrap';
-import './Header.css';
+import styles from './Header.module.css';
+
+const navbarClasses = `d-inline-block ${styles.rounded}`;
 
 const Header = () => (
-	<Navbar expand="lg" bg="newcolor" variant="dark">
+	<Navbar expand="lg" style={{ backgroundColor: '#0d4782' }} variant="dark">
 		<Navbar.Brand href="/" className="mr-auto">
 				      <img
 				        src="../../images/noun_bee_2323015.png"
 				        width="75"
 				        height="75"
-				        className="d-inline-block rounded"
+				        className={navbarClasses}
 				        alt="Busy Traveler Logo"
 				      />
 			Busy Traveler

@@ -39,7 +39,7 @@ class RestCountriesAPI extends Component {
 		const { arrivalCode, departureCode } = this.props;
 		return (
 			<Container>
-				<Row style={{ boxShadow: '1px 1px 5px 1px' }}>
+				<Row className="shadow-sm p-3 mb-5 bg-white rounded">
 					<Col>
 						<StatDisplay
 							name="Purchasing Power Parity"
