@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Image } from 'react-bootstrap';
 import InputFormLogic from '../InputForm/InputForm';
 import './MainPage.css';
+
 
 class InputForm extends Component {
 state = {
@@ -72,8 +74,9 @@ componentDidMount() {
 	  render() {
 		return (
 			<>
-				<h1 className="addTitleFont"> Busy Traveler </h1>
-				<InputFormLogic
+				<div>
+					<h1 className="addTitleFont"> Busy Traveler </h1>
+					<InputFormLogic
 		            countries={this.state.countries}
 		            showFromInput={this.state.showFromInput}
 		            showToInput={this.state.showToInput}
@@ -82,7 +85,11 @@ componentDidMount() {
 		            pickedCountryFrom={this.state.pickedCountryFrom}
 		            pickedCountryTo={this.state.pickedCountryTo}
 		            lfg={this.getResults}
-				/>
+					/>
+				</div>
+				<div>
+					<Image src="http://pngriver.com/wp-content/uploads/2018/04/Download-World-Map.png" />
+				</div>
 			</>
 		);
 	  }

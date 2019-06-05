@@ -44,6 +44,7 @@ class Results extends Component {
 							departureCode={this.state.departureCode}
 						/>
 					</Col>
+
 				</Row>
 				<Row>
 					<Col>

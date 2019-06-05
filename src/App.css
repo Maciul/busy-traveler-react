@@ -6,3 +6,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
  font-weight: 500;
 }
+
+#root {
+	/*background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/jVhILry/technology-world-map-background-4k_eyk-attzl__F0000.png);*/
+    /*background-size: cover;*/
+}

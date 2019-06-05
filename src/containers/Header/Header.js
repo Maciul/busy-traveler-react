@@ -5,10 +5,10 @@ import {
 import './Header.css';
 
 const Header = () => (
-	<Navbar expand="lg" bg="light" variant="light">
+	<Navbar expand="lg" bg="newcolor" variant="dark">
 		<Navbar.Brand href="/" className="mr-auto">
 				      <img
-				        src="../../images/noun_Traveler_1914086.png"
+				        src="../../images/noun_bee_2323015.png"
 				        width="75"
 				        height="75"
 				        className="d-inline-block rounded"

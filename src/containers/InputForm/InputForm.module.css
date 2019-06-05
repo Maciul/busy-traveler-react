@@ -29,8 +29,8 @@
 .wrapper input {
   height: 44px;
   width: 482px;
-  /*background-color: #e1e9ee;*/
-  background: transparent;
+  margin-top: 20px;
+  /*background: rgba(0, 255, 237, 0.5);*/
   border-radius: 24px;
   box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28) ;
   border: 1px solid #dfe1e5;
@@ -38,6 +38,12 @@
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   color: #283e4a;
+}
+
+.wrapper ul {
+  position: fixed;
+  background-color: rgba(183, 202, 220, 0.4);
+  margin-left: 25px;
 }
 
 .wrapper input:hover {

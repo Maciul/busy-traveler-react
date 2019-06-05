@@ -6,6 +6,7 @@
     repeat(3, 1fr);
   grid-gap: 2px;
   background-color: black;
+  margin-bottom: 10px;
 }
 
 .item:nth-child(1) {
@@ -44,4 +45,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
+}
+
+.item:hover {
+  transform: scale(1.03);
+}
+
+.animated {
+  transition: transform 0.5s linear;
 }

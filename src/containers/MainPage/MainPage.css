@@ -1,5 +1,6 @@
 .addTitleFont {
 	font-family: 'Montaga', serif;
-	padding-top: 100px;
-	color: black;
+	text-align: center;
+	font-size: 3rem;
+	color: #0d4782;
 }
