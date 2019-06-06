@@ -10,7 +10,7 @@ const inputForm = (props) => (
 			<Typeahead
 				options={props.countries}
 				maxVisible={10}
-				placeholder="Where From?"
+				placeholder="Where from?"
 				onOptionSelected={(country) => props.countryFrom(country)}
 			/>
 		</section>

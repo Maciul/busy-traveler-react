@@ -6,9 +6,9 @@ import './MainPage.css';
 
 
 class InputForm extends Component {
+// TODO: make this better...
 state = {
 	countries: null,
-	countryToAlpha3Code: {},
 	pickedCountryFromText: null,
 	pickedCountryToText: null,
 	pickedCountryFromCode: null,
@@ -18,33 +18,40 @@ state = {
 }
 
 componentDidMount() {
-	    axios.get('https://restcountries.eu/rest/v2/all?fields=name;alpha3Code')
-	      .then((res) => {
-	        const countries = [];
-	        const countryToAlpha3Code = {};
-	        res.data.forEach((country) => {
-				countries.push(country.name);
-				countryToAlpha3Code[country.name] = country.alpha3Code;
+	axios.get('https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;alpha2Code')
+		  .then((res) => {
+			const countries = {};
+			res.data.forEach((country) => {
+				// const countryObj = {};
+				countries[country.name] = {
+					name: country.name,
+					alpha2: country.alpha2Code,
+					alpha3: country.alpha3Code,
+				};
+				console.log(countries);
+				// countries.push(countryObj);
 			});
 					
 			// AR: Loading States Could Be Handled with this too
-	        this.setState({ countries, countryToAlpha3Code });
-	      });
+			this.setState({ countries });
+		  });
 	  }
 
 	countryTo = (country) => {
 		this.setState((prevState) => ({
 			pickedCountryToText: country,
-			pickedCountryToCode: prevState.countryToAlpha3Code[country],
+			pickedCountryToCode: prevState.countries[country].alpha3,
 			showToInput: false,
 		}));
 	}
 
 	countryFrom = (country) => {
+		console.log(country, this.state.countries);
 		// AR: No need to use prevState if you aren't referencing state in the change.
 		this.setState((prevState) => ({
 			pickedCountryFromText: country,
-			pickedCountryFromCode: prevState.countryToAlpha3Code[country],
+			alpha3: prevState.countries[country].alpha3,
+			alpha2: prevState.countries[country].alpha2,
 			showFromInput: false,
 			showToInput: true,
 		}));
@@ -52,10 +59,11 @@ componentDidMount() {
 
 	getResults = () => {
 		const {
-			pickedCountryFromText, pickedCountryToText, pickedCountryToCode, pickedCountryFromCode,
+			pickedCountryFromText, pickedCountryToText, pickedCountryToCode, alpha3, alpha2,
 		} = this.state;
+		console.log(this.state, alpha2);
 		/* eslint-disable-next-line max-len */
-		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${pickedCountryFromCode}&arrivalCountryCode=${pickedCountryToCode}`;
+		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${alpha3}&alpha2=${alpha2}&arrivalCountryCode=${pickedCountryToCode}`;
 		/** AR: Could turn this into a utility?
 		 *
 		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
@@ -72,19 +80,24 @@ componentDidMount() {
 	}
 
 	  render() {
+		if (this.state.countries) {
+			console.log(Object.keys(this.state.countries));
+		}
+		const countryList = this.state.countries && Object.keys(this.state.countries);
+		console.log(this.state.countries);
 		return (
 			<>
 				<div>
 					<h1 className="addTitleFont"> Busy Traveler </h1>
 					<InputFormLogic
-		            countries={this.state.countries}
-		            showFromInput={this.state.showFromInput}
-		            showToInput={this.state.showToInput}
-		            countryFrom={this.countryFrom}
-		            countryTo={this.countryTo}
-		            pickedCountryFrom={this.state.pickedCountryFrom}
-		            pickedCountryTo={this.state.pickedCountryTo}
-		            lfg={this.getResults}
+						countries={countryList}
+						showFromInput={this.state.showFromInput}
+						showToInput={this.state.showToInput}
+						countryFrom={this.countryFrom}
+						countryTo={this.countryTo}
+						pickedCountryFrom={this.state.pickedCountryFrom}
+						pickedCountryTo={this.state.pickedCountryTo}
+						lfg={this.getResults}
 					/>
 				</div>
 				<div>
