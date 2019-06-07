@@ -1,0 +1,18 @@
+.advisoryInfo {
+	padding: 20px;
+	border-bottom: 1px solid green;
+	border-top: 1px solid green;
+}
+
+.ratingInfo {
+	padding: 20px;
+}
+
+.rating {
+	
+}
+
+.dangerImage {
+	text-align: center;
+	align-self: center;
+}
