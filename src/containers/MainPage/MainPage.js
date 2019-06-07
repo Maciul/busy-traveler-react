@@ -28,8 +28,6 @@ componentDidMount() {
 					alpha2: country.alpha2Code,
 					alpha3: country.alpha3Code,
 				};
-				console.log(countries);
-				// countries.push(countryObj);
 			});
 					
 			// AR: Loading States Could Be Handled with this too
@@ -40,18 +38,18 @@ componentDidMount() {
 	countryTo = (country) => {
 		this.setState((prevState) => ({
 			pickedCountryToText: country,
-			pickedCountryToCode: prevState.countries[country].alpha3,
+			toAlpha2: prevState.countries[country].alpha2,
+			toAlpha3: prevState.countries[country].alpha3,
 			showToInput: false,
 		}));
 	}
 
 	countryFrom = (country) => {
-		console.log(country, this.state.countries);
 		// AR: No need to use prevState if you aren't referencing state in the change.
 		this.setState((prevState) => ({
 			pickedCountryFromText: country,
-			alpha3: prevState.countries[country].alpha3,
-			alpha2: prevState.countries[country].alpha2,
+			fromAlpha2: prevState.countries[country].alpha2,
+			fromAlpha3: prevState.countries[country].alpha3,
 			showFromInput: false,
 			showToInput: true,
 		}));
@@ -59,11 +57,11 @@ componentDidMount() {
 
 	getResults = () => {
 		const {
-			pickedCountryFromText, pickedCountryToText, pickedCountryToCode, alpha3, alpha2,
+			pickedCountryFromText, pickedCountryToText, fromAlpha3, fromAlpha2, toAlpha3, toAlpha2,
 		} = this.state;
-		console.log(this.state, alpha2);
+		console.log(fromAlpha3, fromAlpha2, toAlpha3, toAlpha2);
 		/* eslint-disable-next-line max-len */
-		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&departureCountryCode=${alpha3}&alpha2=${alpha2}&arrivalCountryCode=${pickedCountryToCode}`;
+		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&fromAlpha3=${fromAlpha3}&formAlpha2=${fromAlpha2}&toAlpha2=${toAlpha2}&toAlpha3=${toAlpha3}`;
 		/** AR: Could turn this into a utility?
 		 *
 		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
@@ -80,11 +78,7 @@ componentDidMount() {
 	}
 
 	  render() {
-		if (this.state.countries) {
-			console.log(Object.keys(this.state.countries));
-		}
 		const countryList = this.state.countries && Object.keys(this.state.countries);
-		console.log(this.state.countries);
 		return (
 			<>
 				<div>

@@ -10,12 +10,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// eslint-disable-next-line no-unused-vars
 const store = createStore(reducer,
 	// eslint-disable-next-line no-underscore-dangle
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // AR: :)
-console.log(store.getState());
+// console.log(store.getState());
 
 // const unsubscribe = store.subscribe(() => console.log(store.getState()));
 

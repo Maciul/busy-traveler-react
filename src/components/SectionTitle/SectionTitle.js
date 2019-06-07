@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from './SectionTitle.module.css';
-console.log(styles);
+
 const StatDisplay = (props) => {
 	const { title } = props;
 	

@@ -1,46 +1,48 @@
 import React, { Component } from 'react';
 // import classes from './InputForm.css';
 import { Container, Row, Col } from 'react-bootstrap';
-// import axios from 'axios';
+import axios from 'axios';
 // import StatDisplay from '../../components/StatDisplay/StatDisplay';
 
 class RestCountriesAPI extends Component {
 	state = {
 		arrival: {},
 		departure: {},
-		data: {},
+		travelAdvisory: {},
+		tugo: {},
 		isLoading: true,
 	}
 
 	componentDidMount() {
-		// const { departureCode } = this.props;
+		const { toAlpha2 } = this.props;
+		axios.get(`https://www.travel-advisory.info/api?countrycode=${toAlpha2}`)
+			.then((res) => {
+				this.setState({ travelAdvisory: res.data.data[toAlpha2].advisory });
+			});
 
-		// axios.get(`https://www.reisewarnung.net/api?country=${departureCode}`)
-		// 	.then((res) => {
-		// 		console.log(res);
-		// 		// this.setState({ arrival: res.data[0], departure: res.data[1], isLoading: false });
-		// 	});
-		fetch('https://www.travel-advisory.info/api', {
-			method: 'GET',
+		axios({
+			method: 'get',
+			url: `https://api.tugo.com/v1/travelsafe/countries/${toAlpha2}`,
 			headers: {
-				'Content-Type': 'application/json',
-				// 'Content-Type': 'application/x-www-form-urlencoded',
+				'X-Auth-API-Key': 'hhzg22dmn5gvt89hqk8f3tyt',
 			},
 		})
 			.then((res) => {
-				console.log(res.json());
+				this.setState({ tugo: res.data });
 			});
 	}
 
 	render() {
-		// const {
-		// 	arrival, departure, worldBank, isLoading,
-		// } = this.state;
-		// const { arrivalCode, departureCode } = this.props;
+		console.log(this.state.tugo);
+		const advisoryInfo = this.state.tugo.advisories && this.state.tugo.advisories.description;
 		return (
 			<Container>
 				<Row className="shadow-sm p-3 mb-5 bg-white rounded">
 					<Col>
+						<p> Rating: {this.state.travelAdvisory.score} / 5.0 </p>
+						<p> Information gathered from {this.state.travelAdvisory.sources_active} sources</p>
+						<p> {this.state.tugo.name}: {advisoryInfo} </p>
+						<p> More info to come soon... </p>
 					</Col>
 				</Row>
 			</Container>

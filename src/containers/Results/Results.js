@@ -20,14 +20,14 @@ class Results extends Component {
 		this.state = {
 			departure: params.get('departingCountry'),
 			arrival: params.get('arrivalCountry'),
-			departureCode: params.get('departureCountryCode'),
-			arrivalCode: params.get('arrivalCountryCode'),
-			alpha2: params.get('alpha2'),
+			fromAlpha3: params.get('fromAlpha3'),
+			fromAlpha2: params.get('fromAlpha2'),
+			toAlpha3: params.get('toAlpha3'),
+			toAlpha2: params.get('toAlpha2'),
 		};
 	}
 	
 	render() {
-		console.log(this.state);
 		return (
 			<Container className="results">
 				<Row>
@@ -38,8 +38,8 @@ class Results extends Component {
 				<Row>
 					<Col>
 						<CountryStats
-							arrivalCode={this.state.arrivalCode}
-							departureCode={this.state.departureCode}
+							toAlpha3={this.state.toAlpha3}
+							fromAlpha3={this.state.fromAlpha3}
 						/>
 					</Col>
 
@@ -51,7 +51,7 @@ class Results extends Component {
 				</Row>
 				<Row>
 					<Col>
-						<Safety departureCode={this.state.alpha2} />
+						<Safety toAlpha2={this.state.toAlpha2} />
 					</Col>
 				</Row>
 				<Row>
