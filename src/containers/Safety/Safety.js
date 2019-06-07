@@ -51,8 +51,6 @@ class RestCountriesAPI extends Component {
 	}
 
 	render() {
-		console.log(this.state.tugo);
-		console.log(this.riskIndex(this.state.travelAdvisory.score));
 		const riskScore = this.riskIndex(this.state.travelAdvisory.score);
 		const advisoryInfo = this.state.tugo.advisories && this.state.tugo.advisories.description;
 		return (
