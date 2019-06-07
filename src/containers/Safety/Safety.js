@@ -37,7 +37,7 @@ class RestCountriesAPI extends Component {
 		const advisoryInfo = this.state.tugo.advisories && this.state.tugo.advisories.description;
 		return (
 			<Container>
-				<Row className="shadow-sm p-3 mb-5 bg-white rounded">
+				<Row className="shadow p-3 mb-5 bg-white rounded">
 					<Col>
 						<p> Rating: {this.state.travelAdvisory.score} / 5.0 </p>
 						<p> Information gathered from {this.state.travelAdvisory.sources_active} sources</p>

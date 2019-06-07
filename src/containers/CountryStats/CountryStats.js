@@ -39,7 +39,7 @@ class RestCountriesAPI extends Component {
 		const { toAlpha3, fromAlpha3 } = this.props;
 		return (
 			<Container>
-				<Row className="shadow-sm p-3 mb-5 bg-white rounded">
+				<Row className="shadow p-3 mb-5 bg-white rounded">
 					<Col>
 						<StatDisplay
 							name="Purchasing Power Parity"

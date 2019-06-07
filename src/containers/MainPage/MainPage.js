@@ -59,7 +59,7 @@ componentDidMount() {
 		const {
 			pickedCountryFromText, pickedCountryToText, fromAlpha3, fromAlpha2, toAlpha3, toAlpha2,
 		} = this.state;
-		console.log(fromAlpha3, fromAlpha2, toAlpha3, toAlpha2);
+
 		/* eslint-disable-next-line max-len */
 		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&fromAlpha3=${fromAlpha3}&formAlpha2=${fromAlpha2}&toAlpha2=${toAlpha2}&toAlpha3=${toAlpha3}`;
 		/** AR: Could turn this into a utility?

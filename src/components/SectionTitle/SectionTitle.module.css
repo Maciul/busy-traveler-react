@@ -1,6 +1,8 @@
 .title {
 	font-family: 'Raleway', sans-serif;
-	text-decoration: underline;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	margin: 10px 0px;
+	padding:10px;
+	background-color: #0C4782;
+	color: whitesmoke;
 }
