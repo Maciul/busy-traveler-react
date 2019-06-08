@@ -37,16 +37,18 @@ class RestCountriesAPI extends Component {
 
 	riskIndex = (safetyScore) => {
 		switch (true) {
+			case safetyScore < 1.1:
+				return 'none';
 			case safetyScore < 2.5:
 				return 'low';
 			case safetyScore < 3.5:
 				return 'medium';
 			case safetyScore < 4.5:
 				return 'high';
-			case safetyScore < 5:
+			case safetyScore < 5.1:
 				return 'extreme';
 			default:
-				return 'none';
+				return null;
 		}
 	}
 
