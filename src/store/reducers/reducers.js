@@ -1,11 +1,12 @@
 // import { combineReducers } from 'redux';
+
 import {
 	ADD_COUNTRY_ARRIVE,
 	ADD_COUNTRY_DEPART,
-	ADD_COUNTRY_CODE_ARRIVE,
-	ADD_COUNTRY_CODE_DEPART,
+	ADD_ARRIVE_ALPHA_2,
+	ADD_DEPART_ALPHA_2,
 	ADD_TEXT,
-} from '../actions/actions';
+} from '../actions/actionTypes';
 
 const initialState = {
 	countries: null,
@@ -17,46 +18,47 @@ const initialState = {
 	text: 'hello',
 };
 
-const addCountryArrive = (state = initialState, action) => ({
+const addCountryArrive = (state = initialState, payload) => ({
 	...state,
 	countryArrival: {
-		name: action.country,
+		name: payload,
 	},
 });
 
-const addCountryDepart = (state = initialState, action) => ({
+const addCountryDepart = (state = initialState, payload) => ({
 	...state,
 	countryDeparture: {
-		name: action.country,
+		name: payload,
 	},
 });
 
-const addCountryCodeArrive = (state = initialState, action) => ({
+const addCountryCodeArrive = (state = initialState, payload) => ({
 	...state,
 	countryArrival: {
-		code: action.country,
+		code: payload,
 	},
 });
 
-const addCountryCodeDepart = (state = initialState, action) => ({
+const addCountryCodeDepart = (state = initialState, payload) => ({
 	...state,
 	countryDepart: {
-		code: action.country,
+		code: payload,
 	},
 });
 
-const addText = (state = initialState, action) => ({
+const addText = (state = initialState, payload) => ({
 	...state,
-	text: action.text,
+	text: payload,
 });
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case ADD_COUNTRY_ARRIVE: return addCountryArrive(state, action);
-		case ADD_COUNTRY_DEPART: return addCountryDepart(state, action);
-		case ADD_COUNTRY_CODE_ARRIVE: return addCountryCodeArrive(state, action);
-		case ADD_COUNTRY_CODE_DEPART: return addCountryCodeDepart(state, action);
-		case ADD_TEXT: return addText(state, action);
+	const { type, payload } = action;
+	switch (type) {
+		case ADD_COUNTRY_ARRIVE: return addCountryArrive(state, payload);
+		case ADD_COUNTRY_DEPART: return addCountryDepart(state, payload);
+		case ADD_ARRIVE_ALPHA_2: return addCountryCodeArrive(state, payload);
+		case ADD_DEPART_ALPHA_2: return addCountryCodeDepart(state, payload);
+		case ADD_TEXT: return addText(state, payload);
 		default: return state;
 	}
 };

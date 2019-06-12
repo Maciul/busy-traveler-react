@@ -1,14 +1,4 @@
-/*
- * action types
- */
-
-export const ADD_COUNTRY_DEPART = 'ADD_COUNTRY_DEPART';
-export const ADD_COUNTRY_ARRIVE = 'ADD_COUNTRY_ARRIVE';
-export const ADD_COUNTRY_CODE_ARRIVE = 'ADD_COUNTRY_CODE_ARRIVE';
-export const ADD_COUNTRY_CODE_DEPART = 'ADD_COUNTRY_CODE_DEPART';
-export const ADD_TEXT = 'ADD_TEXT';
-
-
+import * as ActionTypes from './actionTypes';
 /*
  * action creators
  */
@@ -18,21 +8,36 @@ export const ADD_TEXT = 'ADD_TEXT';
  */
 
 export function addCountryDepart(country) {
-	return { type: ADD_COUNTRY_DEPART, country };
+	return {
+		type: ActionTypes.ADD_COUNTRY_DEPART,
+		payload: country,
+	};
 }
 
 export function addCountryArrive(country) {
-	return { type: ADD_COUNTRY_ARRIVE, country };
+	return {
+		type: ActionTypes.ADD_COUNTRY_ARRIVE,
+		payload: country,
+	};
 }
 
-export function addCountryCodeDepart(countryCode) {
-	return { type: ADD_COUNTRY_ARRIVE, countryCode };
+export function addArriveAlpha2(countryCode) {
+	return {
+		type: ActionTypes.ADD_ARRIVE_ALPHA_2,
+		payload: countryCode,
+	};
 }
 
-export function addCountryCodeArrive(countryCode) {
-	return { type: ADD_COUNTRY_ARRIVE, countryCode };
+export function addDepartAlpha2(countryCode) {
+	return {
+		type: ActionTypes.ADD_DEPART_ALPHA_2,
+		payload: countryCode,
+	};
 }
 
 export function addText(text) {
-	return { type: ADD_TEXT, text };
+	return {
+		type: ActionTypes.ADD_TEXT,
+		payload: text,
+	};
 }
