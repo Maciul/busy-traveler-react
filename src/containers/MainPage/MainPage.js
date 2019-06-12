@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
+import { addCountryList, addCountryDepart, addCountryArrive } from '../../store/actions/actions';
 import InputFormLogic from '../InputForm/InputForm';
 import './MainPage.css';
 
 
-class InputForm extends Component {
+class MainPage extends Component {
 // TODO: make this better...
 state = {
 	countries: null,
@@ -32,6 +34,7 @@ componentDidMount() {
 					
 			// AR: Loading States Could Be Handled with this too
 			this.setState({ countries });
+			this.props.addCountryList(countries);
 		  });
 	  }
 
@@ -57,11 +60,13 @@ componentDidMount() {
 
 	getResults = () => {
 		const {
-			pickedCountryFromText, pickedCountryToText, fromAlpha3, fromAlpha2, toAlpha3, toAlpha2,
+			pickedCountryFromText, pickedCountryToText,
 		} = this.state;
+		this.props.addCountryDepart(pickedCountryFromText);
+		this.props.addCountryArrive(pickedCountryToText);
 
 		/* eslint-disable-next-line max-len */
-		const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&fromAlpha3=${fromAlpha3}&formAlpha2=${fromAlpha2}&toAlpha2=${toAlpha2}&toAlpha3=${toAlpha3}`;
+		// const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&fromAlpha3=${fromAlpha3}&formAlpha2=${fromAlpha2}&toAlpha2=${toAlpha2}&toAlpha3=${toAlpha3}`;
 		/** AR: Could turn this into a utility?
 		 *
 		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
@@ -71,35 +76,40 @@ componentDidMount() {
 		 *
 		 *
 		 */
-		this.props.history.push({
-			pathname: '/results',
-			search: queryString,
-		});
+
+		 // APP IS BROKEN AT THE MOMENT - NEED TO HOOK UP REDUX TO RESULTS PAGE.
+		this.props.history.push({ pathname: '/results' });
 	}
 
 	  render() {
-		const countryList = this.state.countries && Object.keys(this.state.countries);
 		return (
-			<>
+			<React.Fragment>
 				<div>
 					<h1 className="addTitleFont"> Busy Traveler </h1>
 					<InputFormLogic
-						countries={countryList}
 						showFromInput={this.state.showFromInput}
 						showToInput={this.state.showToInput}
 						countryFrom={this.countryFrom}
 						countryTo={this.countryTo}
-						pickedCountryFrom={this.state.pickedCountryFrom}
-						pickedCountryTo={this.state.pickedCountryTo}
 						lfg={this.getResults}
 					/>
 				</div>
 				<div>
 					<Image src="http://pngriver.com/wp-content/uploads/2018/04/Download-World-Map.png" />
 				</div>
-			</>
+			</React.Fragment>
 		);
 	  }
 }
 
-export default InputForm;
+function mapDispatchToProps(dispatch) {
+	return {
+		addCountryList: (countryList) => dispatch(addCountryList(countryList)),
+		addCountryDepart: (country) => dispatch(addCountryDepart(country)),
+		addCountryArrive: (country) => dispatch(addCountryArrive(country)),
+	};
+}
+
+const ConnectedMainPage = connect(null, mapDispatchToProps)(MainPage);
+
+export default ConnectedMainPage;

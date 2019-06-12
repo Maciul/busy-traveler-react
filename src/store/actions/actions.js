@@ -7,6 +7,13 @@ import * as ActionTypes from './actionTypes';
  * AR: I Would checkout Flux Standard Actions.  Consistent shapes of { type, payload, meta, error } (if applicable)
  */
 
+export function addCountryList(countryList) {
+	return {
+		type: ActionTypes.ADD_COUNTRY_LIST,
+		payload: countryList,
+	};
+}
+
 export function addCountryDepart(country) {
 	return {
 		type: ActionTypes.ADD_COUNTRY_DEPART,
