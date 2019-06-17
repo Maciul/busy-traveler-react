@@ -66,17 +66,6 @@ componentDidMount() {
 		this.props.addCountryArrive(pickedCountryToText);
 
 		/* eslint-disable-next-line max-len */
-		// const queryString = `?departingCountry=${pickedCountryFromText}&arrivalCountry=${pickedCountryToText}&fromAlpha3=${fromAlpha3}&formAlpha2=${fromAlpha2}&toAlpha2=${toAlpha2}&toAlpha3=${toAlpha3}`;
-		/** AR: Could turn this into a utility?
-		 *
-		 * const createQuery = (obj) => Object.keys(obj).reduce((carry, key) => {
-		 * 		const prefix = carry.length === 1 ? '' : '&';
-		 * 		return  `${prefix}${carry}${key}=${obj[key]}
-		 * }, '?')
-		 *
-		 *
-		 */
-
 		 // APP IS BROKEN AT THE MOMENT - NEED TO HOOK UP REDUX TO RESULTS PAGE.
 		this.props.history.push({ pathname: '/results' });
 	}

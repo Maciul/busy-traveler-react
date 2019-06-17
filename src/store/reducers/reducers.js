@@ -19,16 +19,12 @@ const addCountryList = (state = initialState, payload) => ({
 
 const addCountryArrive = (state = initialState, payload) => ({
 	...state,
-	countryArrival: {
-		name: payload,
-	},
+	countryArrival: payload,
 });
 
 const addCountryDepart = (state = initialState, payload) => ({
 	...state,
-	countryDeparture: {
-		name: payload,
-	},
+	countryDeparture: payload,
 });
 
 const reducer = (state = initialState, action) => {

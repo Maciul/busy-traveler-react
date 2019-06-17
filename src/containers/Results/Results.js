@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
 /**
@@ -11,23 +12,11 @@ import Safety from '../Safety/Safety';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Results extends Component {
-	constructor(props) {
-		super(props); // AR: Unnecessary here could still just be a state declaration
-
-		const params = new URLSearchParams(this.props.location.search);
-
-		this.state = {
-			departure: params.get('departingCountry'),
-			arrival: params.get('arrivalCountry'),
-			fromAlpha3: params.get('fromAlpha3'),
-			fromAlpha2: params.get('fromAlpha2'),
-			toAlpha3: params.get('toAlpha3'),
-			toAlpha2: params.get('toAlpha2'),
-		};
-	}
-	
 	render() {
+		const { arrival, departure } = this.props;
+		console.log(this.props);
 		return (
 			<Container className="results">
 				<Row>
@@ -38,8 +27,8 @@ class Results extends Component {
 				<Row>
 					<Col>
 						<CountryStats
-							toAlpha3={this.state.toAlpha3}
-							fromAlpha3={this.state.fromAlpha3}
+							toAlpha3={arrival.alpha3}
+							fromAlpha3={departure.alpha3}
 						/>
 					</Col>
 
@@ -51,7 +40,7 @@ class Results extends Component {
 				</Row>
 				<Row>
 					<Col>
-						<Safety toAlpha2={this.state.toAlpha2} />
+						<Safety toAlpha2={arrival.alpha2} />
 					</Col>
 				</Row>
 				<Row>
@@ -62,7 +51,7 @@ class Results extends Component {
 				<Row>
 					<Col>
 						<PhotoGallery
-							arrival={this.state.arrival}
+							arrival={arrival.name}
 						/>
 					</Col>
 				</Row>
@@ -71,4 +60,11 @@ class Results extends Component {
 	}
 }
 
-export default Results;
+function mapStateToProps(state) {
+	return {
+		arrival: state.countries[state.countryArrival],
+		departure: state.countries[state.countryDeparture],
+	};
+}
+
+export default connect(mapStateToProps)(Results);
