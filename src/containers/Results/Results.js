@@ -16,7 +16,6 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 class Results extends Component {
 	render() {
 		const { arrival, departure } = this.props;
-		console.log(this.props);
 		return (
 			<Container className="results">
 				<Row>
